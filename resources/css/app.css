@@ -9,3 +9,9 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+.tag{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 15px;
+}
