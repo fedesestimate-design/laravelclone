@@ -35,7 +35,7 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['credentials' => 'Invalid Credentials'])->withInput();
         }
         // on successful login redirect to dashboard
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
 
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->password = Hash::make($req->password);
         $user->save();
         Auth::login($user);
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
 
     }
 

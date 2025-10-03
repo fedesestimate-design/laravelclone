@@ -16,7 +16,7 @@ class CheckoutController extends Controller
 {
     public function __construct(private CartService $cart)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
