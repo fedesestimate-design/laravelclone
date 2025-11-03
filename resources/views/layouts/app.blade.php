@@ -19,9 +19,9 @@
                     <div class="hidden md:flex ml-10 space-x-8">
                         <a href="{{ route('shop.index') }}" class="text-gray-700 hover:text-gray-900">Shop</a>
                         @auth
-                            @if(auth()->user()->role === 'admin')
-                                <a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:text-gray-900">Admin</a>
-                            @endif
+                        <a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:text-gray-900">Demo Admin Panel</a>
+                            {{-- @if(auth()->user()->role === 'admin')
+                            @endif --}}
                         @endauth
                     </div>
                 </div>
@@ -71,7 +71,7 @@
         </div>
     @endif
 
-    <main class="py-8">
+    <main class="">
         @yield('content')
     </main>
 

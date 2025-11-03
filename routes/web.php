@@ -29,11 +29,13 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 // });
 
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // routes/web.php
 
-Route::get('/', [ShopController::class, 'index'])->name('home');
+Route::get('/', function(){
+    return view('welcome');
+})->name('home');
 // Route::get('/login', [ShopController::class, 'index'])->name('login');
 // Route::get('/register', [ShopController::class, 'index'])->name('register');
 
@@ -42,6 +44,7 @@ Route::get('/register',[UserController::class, 'register'])->middleware('guest')
 Route::post('/login',[UserController::class, 'login'])->name('user.login.post');
 Route::post('/register',[UserController::class, 'create'])->name('user.register.post');
 
+Route::get('/', [ShopController::class, 'home'])->name('home');
 
 // Shop Routes
 Route::prefix('shop')->name('shop.')->group(function () {
@@ -68,7 +71,7 @@ Route::middleware('auth')->prefix('checkout')->name('checkout.')->group(function
 Route::post('/stripe/webhook', [CheckoutController::class, 'webhook'])->name('stripe.webhook');
 
 // Admin Routes
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     // Products

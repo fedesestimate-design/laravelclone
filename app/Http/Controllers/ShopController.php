@@ -9,6 +9,26 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    public function home(Request $request)
+    {
+        $query = Product::with('category')->where('is_active', true);
+
+        if ($request->has('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->latest()->paginate(12);
+        $categories = Category::withCount('products')->get();
+
+        return view('welcome', compact('products', 'categories'));
+    }
+
     public function index(Request $request)
     {
         $query = Product::with('category')->where('is_active', true);
