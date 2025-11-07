@@ -4,7 +4,7 @@
 @section('title', 'Manage Products')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-7">
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-3xl font-bold">Manage Products</h1>
         <a href="{{ route('admin.products.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
@@ -30,7 +30,7 @@
                     <tr>
                         <td class="px-6 py-4">
                             @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover rounded">
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover rounded">
                             @else
                                 <div class="w-16 h-16 bg-gray-200 rounded"></div>
                             @endif

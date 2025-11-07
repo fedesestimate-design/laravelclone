@@ -116,7 +116,7 @@
             <div>
                 @if($product->image)
                     <div class="mb-2">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-32 h-32 object-cover rounded">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-32 h-32 object-cover rounded">
                     </div>
                 @endif
                 <label class="block text-sm font-medium text-gray-700">Product Image</label>

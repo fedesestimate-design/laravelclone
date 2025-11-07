@@ -5,7 +5,10 @@
 @section('title', 'Add New Product')
 @section('content')
 
-<section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8  mt-7">
+        <form action="{{ route('admin.products.store')}}" enctype="multipart/form-data" method="post">
+            @csrf
+            @method('post')
                 <div>
                     <label class="font-medium text-gray-700">Product Name</label>
                     <input type="text" name="name" value="{{ old('name') }}" required

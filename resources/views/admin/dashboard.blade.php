@@ -4,7 +4,7 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-7">
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-3xl font-bold">Admin Dashboard</h1>
         <div class="flex gap-4">

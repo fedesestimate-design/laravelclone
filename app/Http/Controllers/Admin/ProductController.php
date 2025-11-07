@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,8 +41,18 @@ class ProductController extends Controller
         $validated['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+
+            // Create a unique name for the file
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Move file to public/products
+            $file->move(public_path('products'), $filename);
+
+            // Save the relative path in the database
+            $validated['image'] = 'products/' . $filename;
         }
+
 
         Product::create($validated);
 
@@ -69,11 +80,28 @@ class ProductController extends Controller
         $validated['slug'] = Str::slug($validated['name']);
         $validated['is_active'] = $request->has('is_active');
 
+        // if ($request->hasFile('image')) {
+        //     if ($product->image) {
+        //         Storage::disk('public')->delete($product->image);
+        //     }
+        //     $validated['image'] = $request->file('image')->store('products', 'public');
+        // }
         if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
+
+            // Delete old image from public/products
+            if (!empty($product->image) && file_exists(public_path($product->image))) {
+                unlink(public_path($product->image));
             }
-            $validated['image'] = $request->file('image')->store('products', 'public');
+
+            // Handle new upload
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Move file to public/products
+            $file->move(public_path('products'), $filename);
+
+            // Save relative path in database
+            $validated['image'] = 'products/' . $filename;
         }
 
         $product->update($validated);
