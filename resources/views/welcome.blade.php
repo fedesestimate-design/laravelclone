@@ -124,7 +124,7 @@
                     <article class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200 hover:-translate-y-1 transition-all duration-300">
                         <a href="{{ route('shop.show', $product->slug) }}" class="block relative overflow-hidden aspect-square">
                             @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" 
+                                <img src="{{ asset($product->image) }}" 
                                      alt="{{ $product->name }}" 
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @else

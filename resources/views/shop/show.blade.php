@@ -4,12 +4,12 @@
 @section('title', $product->name)
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
             <div>
                 @if($product->image)
-                    <img src="{{ asset('storage/' . $product->image) }}" 
+                    <img src="{{ asset($product->image) }}" 
                          alt="{{ $product->name }}" 
                          class="w-full rounded-lg">
                 @else
@@ -66,7 +66,7 @@
                     <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
                         <a href="{{ route('shop.show', $related->slug) }}">
                             @if($related->image)
-                                <img src="{{ asset('storage/' . $related->image) }}" 
+                                <img src="{{ asset( $related->image) }}" 
                                      alt="{{ $related->name }}" 
                                      class="w-full h-48 object-cover rounded-t-lg">
                             @else
